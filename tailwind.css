@@ -1,0 +1,338 @@
+@import "tailwindcss";
+@import "./assets/style/font-awesome.css";
+
+/* ==========================================================================
+   Theme & Design Tokens
+   ========================================================================== */
+
+@theme {
+    --color-jeopardy-blue: #060ce9;
+    --color-jeopardy-dark: #04088a;
+    --color-jeopardy-navy: #080d38;
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.2s ease-out forwards;
+}
+
+/* ==========================================================================
+   Shared / Common Components
+   ========================================================================== */
+
+/* Shared Modal Elements */
+.rules-modal-backdrop,
+.clue-modal-backdrop {
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4;
+    animation: fadeIn 0.2s ease-out forwards;
+}
+
+.rules-modal-close,
+.clue-modal-close {
+    @apply absolute top-4 right-4 text-blue-200 hover:text-yellow-300 text-2xl font-bold cursor-pointer transition-colors;
+}
+
+/* Shared Modal Action / Response Buttons */
+.btn-correct,
+.btn-incorrect {
+    @apply px-6 py-3 text-white font-bold uppercase rounded-xl cursor-pointer shadow-md transition-colors flex items-center space-x-2;
+}
+
+.btn-correct {
+    @apply bg-green-600 hover:bg-green-500;
+}
+
+.btn-incorrect {
+    @apply bg-red-600 hover:bg-red-500;
+}
+
+/* Shared Clue Outcome Cards & Icons */
+.clue-card-correct,
+.clue-card-incorrect {
+    @apply bg-blue-950/80 h-16 sm:h-20 md:h-24 rounded border flex items-center justify-center shadow-inner;
+}
+
+.clue-card-correct {
+    @apply border-green-500/50;
+}
+
+.clue-card-incorrect {
+    @apply border-red-500/50;
+}
+
+.clue-status-correct,
+.clue-status-incorrect {
+    @apply font-black text-2xl sm:text-3xl md:text-4xl drop-shadow;
+}
+
+.clue-status-correct {
+    @apply text-green-500;
+}
+
+.clue-status-incorrect {
+    @apply text-red-500;
+}
+
+/* ==========================================================================
+   App Layout
+   ========================================================================== */
+
+.app-main {
+    @apply w-full min-h-screen;
+}
+
+/* ==========================================================================
+   Splash Screen
+   ========================================================================== */
+
+.splash-container {
+    @apply min-h-screen w-full bg-gradient-to-b from-blue-950 via-jeopardy-blue to-blue-950 text-white flex flex-col justify-between items-center p-4 sm:p-8 font-sans selection:bg-yellow-400 selection:text-blue-950;
+}
+
+.splash-header {
+    @apply w-full max-w-5xl flex justify-between items-center py-4 border-b border-blue-400/30;
+}
+
+.splash-header-group {
+    @apply flex items-center space-x-2;
+}
+
+.splash-header-star {
+    @apply text-yellow-400 text-2xl font-black tracking-widest;
+}
+
+.splash-header-subtitle {
+    @apply text-blue-200 uppercase text-xs sm:text-sm tracking-widest font-semibold;
+}
+
+.splash-badge {
+    @apply text-xs sm:text-sm bg-blue-900/60 border border-blue-400/40 px-3 py-1 rounded-full text-blue-200;
+}
+
+.splash-main {
+    @apply flex-1 flex flex-col items-center justify-center text-center max-w-4xl my-8 px-2;
+}
+
+.splash-logo-container {
+    @apply relative mb-6;
+}
+
+.splash-logo-glow {
+    @apply absolute -inset-1 bg-gradient-to-r from-yellow-500 via-amber-300 to-yellow-500 rounded-2xl blur-md opacity-75 transition duration-1000;
+}
+
+.splash-logo-container:hover .splash-logo-glow {
+    @apply opacity-100 duration-200;
+}
+
+.splash-logo-box {
+    @apply relative px-8 sm:px-14 py-6 sm:py-8 bg-gradient-to-b from-jeopardy-blue to-jeopardy-dark rounded-xl border-4 border-yellow-400 shadow-2xl;
+}
+
+.splash-logo-title {
+    @apply text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-wider text-yellow-300 drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)] font-serif;
+}
+
+.splash-text-container {
+    @apply space-y-3 mb-10;
+}
+
+.splash-title {
+    @apply text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-wide;
+}
+
+.splash-description {
+    @apply text-blue-200 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed;
+}
+
+.splash-actions {
+    @apply flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center items-center mb-12;
+}
+
+.btn-play {
+    @apply w-full sm:w-auto px-10 py-4 bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-300 hover:to-amber-400 text-blue-950 font-black text-lg sm:text-xl uppercase tracking-wider rounded-xl shadow-xl hover:shadow-yellow-400/30 transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center space-x-3 cursor-pointer;
+}
+
+.btn-play-icon {
+    @apply w-6 h-6 fill-current;
+}
+
+.btn-how-to-play {
+    @apply w-full sm:w-auto px-8 py-4 bg-blue-900/80 hover:bg-blue-800/90 text-yellow-300 border-2 border-yellow-400/60 hover:border-yellow-400 font-bold text-base sm:text-lg uppercase tracking-wider rounded-xl shadow-lg transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center space-x-2 cursor-pointer;
+}
+
+.btn-how-to-play-icon {
+    @apply w-5 h-5 fill-current;
+}
+
+.splash-features {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-4xl text-left;
+}
+
+.splash-feature-card {
+    @apply bg-blue-900/50 backdrop-blur-sm border border-blue-400/20 rounded-xl p-4 flex items-start space-x-3;
+}
+
+.splash-feature-icon-wrapper {
+    @apply bg-yellow-400/20 p-2.5 rounded-lg text-yellow-300 shrink-0;
+}
+
+.splash-feature-icon {
+    @apply w-6 h-6;
+}
+
+.splash-feature-title {
+    @apply font-bold text-yellow-300 text-sm;
+}
+
+.splash-feature-desc {
+    @apply text-xs text-blue-200/90 mt-1;
+}
+
+.splash-footer {
+    @apply w-full max-w-5xl py-4 border-t border-blue-400/30 text-center text-xs text-blue-300 flex flex-col sm:flex-row justify-between items-center gap-2;
+}
+
+.splash-footer-highlight {
+    @apply text-blue-400;
+}
+
+/* Rules Modal */
+.rules-modal-card {
+    @apply bg-blue-950 border-2 border-yellow-400 rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative text-left;
+}
+
+.rules-modal-title {
+    @apply text-2xl font-black text-yellow-300 uppercase tracking-wider mb-4 border-b border-blue-400/30 pb-2 flex items-center space-x-2;
+}
+
+.rules-list {
+    @apply space-y-4 text-sm text-blue-100;
+}
+
+.rules-item {
+    @apply flex items-start space-x-3;
+}
+
+.rules-item-number {
+    @apply text-yellow-400 font-bold text-base;
+}
+
+.rules-item-highlight {
+    @apply text-yellow-200;
+}
+
+.rules-modal-footer {
+    @apply mt-6 pt-4 border-t border-blue-400/30 flex justify-end;
+}
+
+.btn-got-it {
+    @apply px-6 py-2 bg-yellow-400 hover:bg-yellow-300 text-blue-950 font-bold rounded-lg cursor-pointer transition-colors;
+}
+
+/* ==========================================================================
+   Game Board
+   ========================================================================== */
+
+.game-container {
+    @apply min-h-screen w-full bg-blue-950 text-white flex flex-col p-4 font-sans select-none;
+}
+
+.game-header {
+    @apply w-full max-w-6xl mx-auto flex justify-between items-center py-4 border-b border-blue-800;
+}
+
+.btn-back {
+    @apply flex items-center space-x-2 text-yellow-300 hover:text-yellow-200 bg-blue-900/80 hover:bg-blue-800 px-4 py-2 rounded-lg font-bold border border-yellow-400/40 cursor-pointer transition-colors;
+}
+
+.game-logo {
+    @apply text-2xl sm:text-3xl font-black text-yellow-400 font-serif tracking-wider;
+}
+
+.game-score-box {
+    @apply bg-blue-900 px-5 py-2 rounded-xl border-2 border-yellow-400 flex items-center space-x-2;
+}
+
+.game-score-label {
+    @apply text-xs sm:text-sm uppercase text-blue-200 font-semibold;
+}
+
+.game-score-value {
+    @apply text-lg sm:text-xl font-black text-yellow-300;
+}
+
+.game-main {
+    @apply w-full max-w-6xl mx-auto flex-1 flex flex-col justify-center my-6;
+}
+
+.game-board-grid {
+    @apply grid grid-cols-6 gap-2 bg-black p-2 rounded-xl border-4 border-blue-900 shadow-2xl;
+}
+
+.category-header {
+    @apply bg-blue-900 text-white font-extrabold text-xs sm:text-sm md:text-base uppercase flex items-center justify-center text-center p-2 sm:p-3 h-20 sm:h-24 rounded border border-blue-700 shadow-inner tracking-tight;
+}
+
+.clue-button {
+    @apply bg-jeopardy-blue hover:bg-blue-700 active:bg-blue-800 text-yellow-300 font-black text-lg sm:text-2xl md:text-3xl h-16 sm:h-20 md:h-24 rounded border border-blue-500 shadow flex items-center justify-center cursor-pointer transition-transform hover:scale-[1.02];
+}
+
+.clue-placeholder {
+    @apply bg-blue-950 h-16;
+}
+
+/* ==========================================================================
+   Clue Modal
+   ========================================================================== */
+
+.clue-modal-card {
+    @apply bg-jeopardy-blue border-4 border-yellow-400 rounded-2xl max-w-2xl w-full p-6 sm:p-10 shadow-2xl relative text-center;
+}
+
+.clue-modal-meta {
+    @apply uppercase text-yellow-300 font-bold text-sm tracking-widest mb-1;
+}
+
+.clue-modal-question {
+    @apply my-8 text-xl sm:text-2xl md:text-3xl font-extrabold text-white leading-relaxed px-2 font-serif uppercase;
+}
+
+.clue-answer-card {
+    @apply my-6 p-4 bg-blue-900 rounded-xl border border-yellow-400/60;
+    animation: fadeIn 0.2s ease-out forwards;
+}
+
+.clue-answer-label {
+    @apply text-xs text-yellow-300 uppercase font-bold tracking-wider mb-1;
+}
+
+.clue-answer-text {
+    @apply text-lg sm:text-xl font-bold text-white font-serif;
+}
+
+.clue-modal-actions {
+    @apply flex flex-wrap gap-3 justify-center items-center mt-6 pt-4 border-t border-blue-400/30;
+}
+
+.btn-reveal-response {
+    @apply px-6 py-3 bg-yellow-400 hover:bg-yellow-300 text-blue-950 font-bold uppercase rounded-xl cursor-pointer shadow-md transition-colors;
+}
+
+.clue-response-buttons {
+    @apply flex gap-4;
+}
