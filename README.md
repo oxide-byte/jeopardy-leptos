@@ -2,6 +2,8 @@
 
 A modern, responsive Jeopardy! quiz show web application built with [Leptos](https://leptos.dev/) (Rust + WebAssembly) and [Tailwind CSS](https://tailwindcss.com/).
 
+Deployed under GitHub Pages: https://oxide-byte.github.io/jeopardy-leptos/
+
 > **Note**: This project was generated with [JetBrains Air](https://www.jetbrains.com/air/) and Gemini 3.7 Flash.
 
 ## Features
@@ -45,10 +47,20 @@ Ensure you have the following installed:
    ```
    The compiled static assets will be located in the `dist/` directory.
 
+4. Build for GitHub Pages:
+
+```bash
+trunk build --release --public-url="/jeopardy-leptos/"
+```
+
+- Delete old files from docs.
+- Copy manually the files from dist to docs.
+
 ## Project Structure
 
 ```text
 ├── assets/             # Static assets (fonts, icons)
+├── docs/               # Source for GitHub Pages (manual Copy/Past of dist)
 ├── public/             # Public static files
 ├── src/
 │   ├── components/     # Modular Leptos UI components

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="A modern, responsive Jeopardy! quiz show web application built with Leptos and Tailwind CSS."/>
+    <title>Jeopardy!</title>
+    <link rel="stylesheet" href="/jeopardy-leptos/tailwind-70e527629b7f43d4.css" integrity="sha384-0m2u6zSoibJvhfVSOBctxszLQEw5dpNkfrWi0QdAq70wqA2WYYi+6KJtjM36GJ4r"/>
+    
+<link rel="modulepreload" href="/jeopardy-leptos/jeopardy-leptos-8ff47174f8681c56.js" crossorigin="anonymous" integrity="sha384-y1+4ZiksMas5nouvQJ40ffWq6I0StRxr6eG7MoDUvLIb/9PAEU0VHgIzVGI5eO5t"><link rel="preload" href="/jeopardy-leptos/jeopardy-leptos-8ff47174f8681c56_bg.wasm" crossorigin="anonymous" integrity="sha384-SB35gsU8Fc9AandoJtxKzF4yMq7noTMwtIIOu0gSTFSPHa4I6C0chRMJj7cJrlIw" as="fetch" type="application/wasm"></head>
+<body>
+<script type="module">
+import init, * as bindings from '/jeopardy-leptos/jeopardy-leptos-8ff47174f8681c56.js';
+const wasm = await init({ module_or_path: '/jeopardy-leptos/jeopardy-leptos-8ff47174f8681c56_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script></body>
+</html>
